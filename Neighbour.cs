@@ -4,22 +4,22 @@ using UnityEngine;
 
 public class Neighbour {
 
-    public Neighbour (Vector3 position, 
+    public Neighbour (Vector3Int position, 
                     float distanceToTarget, 
-                    float stepsTravelledFromOrigin,
+                    int stepsTravelledFromOrigin,
                     bool walkable) {
         this.position = position;
         this.distanceToTarget = distanceToTarget;
         this.walkable = walkable;
     }
-    public Vector3 position {get; }
+    public Vector3Int position {get; }
     public float distanceToTarget { get; set; }
     public float stepsTravelledFromOrigin;
-    public float newCost(Vector2 n) {
-        float dx = Mathf.Abs(this.position.x - n.x);
-        float dy = Mathf.Abs(this.position.y - n.y);
-        return (dx + dy) + -1 * Mathf.Min(dx, dy) + stepsTravelledFromOrigin;
-    }
+    // public float newCost(Vector2 n) {
+    //     float dx = Mathf.Abs(this.position.x - n.x);
+    //     float dy = Mathf.Abs(this.position.y - n.y);
+    //     return (dx + dy) + -1 * Mathf.Min(dx, dy) + stepsTravelledFromOrigin;
+    // }
 
     //public float newCostFloat;
     public void setStepsTravelledFromOrigin() => stepsTravelledFromOrigin++; 

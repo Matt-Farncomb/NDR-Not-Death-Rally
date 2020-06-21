@@ -57,8 +57,8 @@ public class Grid : MonoBehaviour
             //gridArr[x] = new GridNode[gridHeight]; 
              for (int y = 0; y < gridHeight; y++) {
 
-                GridNode gn = Instantiate(gridTile, new Vector3(x, y, 0 ), Quaternion.identity, transform);
-                gn.pos = new Vector3(x, y, 1 );
+                GridNode gn = Instantiate(gridTile, new Vector3Int(x, y, 0 ), Quaternion.identity, transform);
+                gn.pos = new Vector3Int(x, y, 1 );
                 gn.name = "( " + x + " : " + y + " )";
                 //gn.test = 33;
                 gridArr[x + (y * gridWidth)] = gn;
@@ -80,9 +80,13 @@ public class Grid : MonoBehaviour
 
         for (int x = 0; x < gridWidth; x++) {
             for (int y = 0; y  < gridHeight; y++) {
-                Gizmos.DrawWireCube(transform.position, new Vector3(x, y, 1));
+                Gizmos.DrawWireCube(transform.position, new Vector3Int(x, y, 1));
             }
         }
         
+    }
+
+      public GridNode getGridNode(Vector2Int vec) {
+        return gridArr[vec.x + (vec.y * gridWidth)];
     }
 }

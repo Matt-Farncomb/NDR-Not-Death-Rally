@@ -5,11 +5,11 @@ using UnityEngine;
 public class Neighbour {
 
     public Neighbour (Vector3Int position, 
-                    float distanceToTarget, 
-                    int stepsTravelledFromOrigin,
-                    bool walkable) {
+                    bool walkable,
+                    Vector3Int target = new Vector3Int())
+                     {
         this.position = position;
-        this.distanceToTarget = distanceToTarget;
+        this.distanceToTarget = Vector3Int.Distance(target, position);
         this.walkable = walkable;
     }
     public Vector3Int position {get; }
@@ -31,9 +31,5 @@ public class Neighbour {
     //public Vector3 pos;
     public Neighbour parent {get; set; }
 
-    public string direction; // diretion neighbour is from parent
 
-//dx = abs(node.x - goal.x)
-   // dy = abs(node.y - goal.y)
-    //return D * (dx + dy) + (D2 - 2 * D) * min(dx, dy)
 }

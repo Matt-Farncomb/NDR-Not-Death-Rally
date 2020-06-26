@@ -57,8 +57,8 @@ public class Grid : MonoBehaviour
             //gridArr[x] = new GridNode[gridHeight]; 
              for (int y = 0; y < gridHeight; y++) {
 
-                GridNode gn = Instantiate(gridTile, new Vector3Int(x, y, 0 ), Quaternion.identity, transform);
-                gn.pos = new Vector3Int(x, y, 1 );
+                GridNode gn = Instantiate(gridTile, _Tools.createVector3Int(x,y), Quaternion.identity, transform);
+                gn.pos = _Tools.createVector3Int(x,y);
                 gn.name = "( " + x + " : " + y + " )";
                 //gn.test = 33;
                 gridArr[x + (y * gridWidth)] = gn;
@@ -86,7 +86,29 @@ public class Grid : MonoBehaviour
         
     }
 
-      public GridNode getGridNode(Vector2Int vec) {
+    public GridNode getGridNode(Vector3Int vec) {
         return gridArr[vec.x + (vec.y * gridWidth)];
     }
+
+    public GridNode getGridNode(int x, int y) {
+        return gridArr[x + (y * gridWidth)];
+    }
+
+    public bool inBounds(Vector3Int vec) {
+        //Debug.Log("Vector3Int  x:" + vec.x + " y: " + vec.y);
+        if (vec.x > 0 && vec.x < gridWidth 
+         && vec.y > 0 && vec.y < gridHeight) {
+             return true;
+         } else return false;
+    }
+
+     public bool inBounds(int x, int y) {
+        //Debug.Log("x:" + x + " y: " + y);
+        if (x > 0 && x < gridWidth 
+         && y > 0 && y < gridHeight) {
+            return true;
+         } else return false;
+    }
+
+        
 }
